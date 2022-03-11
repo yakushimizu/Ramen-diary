@@ -1,0 +1,48 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #efc3bd">
+    <div class= "container">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <div class="d-flex align-items-center justify-content-center">
+              <p class="text-secondary font-weight-bold" >ようこそ、<%= current_user.name %>さん！</p>
+            </div>
+            <li>
+              <%=link_to user_path(current_user.id), class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              マイページ
+              <% end %>
+            </li>
+            <li>
+              <%=link_to items_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              ラーメン一覧
+            <% end %>
+            </li>
+            <li>
+              <%=link_to destroy_user_session_path, method: :delete, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-muted' do %>
+                ログアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%=link_to items_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              ラーメン一覧
+              <% end %>
+            </li>
+            <li>
+               <%= link_to new_user_registration_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+               新規登録
+               <% end %>
+            </li>
+            <li>
+               <%= link_to new_user_session_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+               ログイン
+               <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<br>
+<br>

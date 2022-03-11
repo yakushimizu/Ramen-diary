@@ -1,0 +1,27 @@
+<h1>新規投稿</h1>
+<!-- form_with部分 -->
+<%= form_with model: @item, url: '/items', method: :post do |f| %>
+
+<%= f.file_field :image, accept: "image/*" %>
+  <h4>タイトル</h4>
+  <%= f.text_field :shop_name %>
+
+  <h4>本文</h4>
+  <%= f.text_area :address %>
+
+  <%= f.submit '投稿' %>
+<% end %>
+
+<h1>投稿一覧</h1>
+
+<% @items.each do |item| %>
+<%= item.user.name %>
+<%= link_to item_path(item.id) do %>
+<%= item.shop_name %>
+<% end %>
+<%= item.address %>
+<%= link_to item_path(item.id) do %>
+<%= image_tag item.image, size: "200x200" %>
+<% end %>
+
+<% end %>

@@ -1,0 +1,16 @@
+<div>
+  <h3><%= @user.name %></h3>
+</div>
+<p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @items.each do |item| %>
+<div>
+  <%= link_to item_path(item.id) do %>
+    <%= image_tag item.image, size: "200x200" %>
+  <% end %>
+  <p>ショップ名：<%= item.shop_name %></p>
+  <p>説明：<%= item.address %></p>
+</div>
+<% end %>
