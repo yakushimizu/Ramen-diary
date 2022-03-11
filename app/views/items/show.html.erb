@@ -1,0 +1,10 @@
+<h2>タイトル</h2>
+<p><%= @item.shop_name %></p>
+
+<h2>本文</h2>
+<p><%= @item.address %></p>
+<%= image_tag @item.image, size: "200x200" %>
+<% if @item.user == current_user %>
+  <%= link_to "編集", edit_item_path(@item.id) %>
+  <%= link_to "削除", item_path(@item), method: :delete %>
+<% end %>
