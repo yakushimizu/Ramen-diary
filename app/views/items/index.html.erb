@@ -22,6 +22,7 @@
 <%= item.address %>
 <%= link_to item_path(item.id) do %>
 <%= image_tag item.image, size: "200x200" %>
+コメント数<%= item.item_comments.count %>
 <% end %>
 
 <% end %>
