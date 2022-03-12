@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :items, only: [:index, :show, :edit, :create, :destroy]
+  resources :items, only: [:index, :show, :edit, :create, :destroy] do
+    resources :item_comments, only: [:create, :destroy]
+  end
   resources :users, only: [:show, :edit, :update]
   patch 'items/:id' => 'items#update', as: 'update_item'
   delete 'items/:id' => 'items#destroy', as: 'destroy_item'
