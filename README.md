@@ -36,7 +36,7 @@
 - 自分が知らないラーメン屋を知りたいとき
 - どんなラーメンか事前に知りたいとき
 
-## 設計書
+## 設計書,
 
 - WBSシート<https://docs.google.com/spreadsheets/d/1Uk3ES2uAckZqVrXu1mCdkVd4G9qn7sx5EV1uMOt37SI/edit#gid=1773513600>
 
