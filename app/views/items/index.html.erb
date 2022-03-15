@@ -3,7 +3,7 @@
 <%= form_with model: @item, url: '/items', method: :post do |f| %>
 
 <%= f.file_field :image, accept: "image/*" %>
-  <h4>タイトル</h4>
+  <h4>店名</h4>
   <%= f.text_field :shop_name %>
 
   <h4>本文</h4>
