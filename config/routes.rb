@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :items, only: [:index, :show, :edit, :create, :destroy] do
+    resource :favorites, only: [:create, :destroy]
     resources :item_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
