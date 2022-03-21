@@ -23,6 +23,12 @@
   </p>
 <% end %>
 
+<% if @item.user.following?(current_user) %>
+  <%= link_to "フォロー外す", user_relationships_path(@item.user), method: :delete %>
+<% else %>
+  <%= link_to "フォローする", user_relationships_path(@item.user), method: :post %>
+<% end %>
+
 <div>
   <p>コメント件数：<%= @item.item_comments.count %></p>
   <% @item.item_comments.each do |item_comment| %>
