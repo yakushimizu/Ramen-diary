@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  devise_for :users
   get 'relationships/followings'
   get 'relationships/followers'
   resources :items, only: [:index, :show, :edit, :create, :destroy, :update] do
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
   end
   patch 'items/:id' => 'items#update', as: 'update_item'
   delete 'items/:id' => 'items#destroy', as: 'destroy_item'
-  devise_for :users
+
   root to: "homes#top"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
