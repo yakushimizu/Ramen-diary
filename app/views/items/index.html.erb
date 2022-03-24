@@ -12,17 +12,25 @@
   <%= f.submit '投稿' %>
 <% end %>
 
-<h1>投稿一覧</h1>
 
-<% @items.each do |item| %>
-<%= item.user.name %>
-<%= link_to item_path(item.id) do %>
-<%= item.shop_name %>
-<% end %>
-<%= item.address %>
-<%= link_to item_path(item.id) do %>
-<%= image_tag item.image, size: "200x200" %>
-コメント数<%= item.item_comments.count %>
-<% end %>
-
-<% end %>
+<div class='container'>
+  <h2 class="text-secondary">投稿一覧</h2><p class="text-secondary">(全<%= @items.count %>件)</p>
+  <div class='row m-5'>
+    <% @items.each do |item| %>
+      <div class="col-md-3">
+        <div class= 'card mb-4 border-0' style="background-color: #fffafa width: 18rem;">
+          <div class="text-center">
+            <%= item.user.name %>
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.image, size: "200x200" %>
+            <% end %>
+            <p class="text-center">
+              <%= item.shop_name %>
+            <br><%= item.address %>
+            <br>コメント数<%= item.item_comments.count %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
