@@ -1,29 +1,74 @@
-<h2>タイトル</h2>
-<p><%= @item.shop_name %></p>
+<div class= "container">
+  <div class= "row">
+    <h3 class="col-4 text-center">ラーメン詳細</h3>
+  </div>
+  <div class= "row">
+    <div class= "col-3 d-flex align-items-center justify-content-center">
+      <%= image_tag @item.image, size: "460x300" %>
+    </div>
+    <div class= "col d-flex offset-md-1">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td class="text-nowrap">店名</td>
+            <td><%= @item.shop_name %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">住所</td>
+            <td><%= @item.address %></td>
+          </tr>
+          <tr>
+            <td>
+              <% if @item.favorited_by?(current_user) %>
 
-<h2>本文</h2>
-<p><%= @item.address %></p>
-<%= image_tag @item.image, size: "200x200" %>
-<% if @item.user == current_user %>
-  <%= link_to "編集", edit_item_path(@item.id) %>
-  <%= link_to "削除", item_path(@item), method: :delete %>
-<% end %>
+                  <%= link_to item_favorites_path(@item), method: :delete do %>
+                    ♥<%= @item.favorites.count %> いいね
+                  <% end %>
+                <% else %>
+                  <%= link_to item_favorites_path(@item), method: :post do %>
+                    ♡<%= @item.favorites.count %> いいね
+                  <% end %>
+              <% end %>
+              <% if @item.user.following?(current_user) %>
+                <%= link_to "フォロー外す", user_relationships_path(@item.user), method: :delete, class: "btn btn-sm btn-success" %>
+              <% else %>
+                <%= link_to "フォローする", user_relationships_path(@item.user), method: :post, class: "btn btn-sm btn-success" %>
+              <% end %>
+              <% if @item.user == current_user %>
+                <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-sm btn-info" %>
+                <%= link_to "削除", item_path(@item), method: :delete, class: "btn btn-sm btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>コメント件数：<%= @item.item_comments.count %></td>
+          </tr>
 
-<div>
-  <p>コメント件数：<%= @item.item_comments.count %></p>
-  <% @item.item_comments.each do |item_comment| %>
-
-    <%= item_comment.user.name %>
-    <%= item_comment.created_at.strftime('%Y/%m/%d') %><%= item_comment.comment %>
-    <% if item_comment.user == current_user %>
-      <%= link_to "削除", item_item_comment_path(item_comment.item, item_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-
-<div>
-  <%= form_with model: [@item, @item_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class= "row">
+    <div class="col-6 col-sm-5">
+      <tr>
+        <td><br>
+          <% @item.item_comments.each do |item_comment| %>
+            <br><%= item_comment.user.name %>
+            <br><%= item_comment.comment %>
+            <% if item_comment.user == current_user %>
+              <%= link_to "削除", item_item_comment_path(item_comment.item, item_comment), method: :delete,class: "btn btn-sm btn-danger" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= form_with model: [@item, @item_comment] do |f| %>
+            <br><%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+            <br><%= f.submit "コメントする", class: "btn btn-sm btn-success" %>
+          <% end %>
+        </td>
+      </tr>
+    </div>
+  </div>
 </div>
