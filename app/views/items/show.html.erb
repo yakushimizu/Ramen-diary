@@ -10,6 +10,14 @@
       <table class='table table-borderless'>
         <tbody>
           <tr>
+            <td class="text-nowrap">ユーザー</td>
+            <td>
+              <%= link_to user_path(@item.user_id) do %>
+                <%= @item.user.name %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
             <td class="text-nowrap">店名</td>
             <td><%= @item.shop_name %></td>
           </tr>
@@ -29,15 +37,18 @@
                     ♡<%= @item.favorites.count %> いいね
                   <% end %>
               <% end %>
-              <% if @item.user.following?(current_user) %>
-                <%= link_to "フォロー外す", user_relationships_path(@item.user), method: :delete, class: "btn btn-sm btn-success" %>
-              <% else %>
-                <%= link_to "フォローする", user_relationships_path(@item.user), method: :post, class: "btn btn-sm btn-success" %>
+              <% if current_user != @item.user %>
+                <% if current_user.following?(@item.user) %>
+                  <%= link_to "フォロー外す", user_relationships_path(@item.user.id), method: :delete, class: "btn btn-sm btn-info" %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(@item.user.id), method: :post, class: "btn btn-sm btn-success" %>
+                <% end %>
               <% end %>
-              <% if @item.user == current_user %>
-                <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-sm btn-info" %>
-                <%= link_to "削除", item_path(@item), method: :delete, class: "btn btn-sm btn-danger" %>
-              <% end %>
+                <% if @item.user == current_user %>
+                  <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-sm btn-info" %>
+                  <%= link_to "削除", item_path(@item), method: :delete, class: "btn btn-sm btn-danger" %>
+                <% end %>
+
             </td>
           </tr>
           <tr>

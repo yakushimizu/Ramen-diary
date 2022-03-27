@@ -1,4 +1,9 @@
 class ItemsController < ApplicationController
+
+  def new
+    @item = Item.new
+  end
+
   def index
     @item = Item.new
     @items = Item.all
@@ -19,15 +24,16 @@ class ItemsController < ApplicationController
     @item.save
     redirect_to '/items'
   end
+  
   def update
     item = Item.find(params[:id])
     item.update(item_params)
     redirect_to item_path(item.id)
   end
-  
+
   def destroy
     @item = Item.find(params[:id])
-    
+
     @item.destroy
     redirect_to '/items'
   end
