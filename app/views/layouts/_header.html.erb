@@ -8,12 +8,15 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <div class="d-flex align-items-center justify-content-center">
-              <p class="text-secondary font-weight-bold" >ようこそ、<%= current_user.name %>さん！</p>
-            </div>
+            
             <li>
               <%=link_to user_path(current_user.id), class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
               マイページ
+              <% end %>
+            </li>
+            <li>
+              <%=link_to new_item_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              新規投稿
               <% end %>
             </li>
             <li>
