@@ -5,8 +5,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @item = Item.new
-    @items = Item.all
+    @items = Item.search(params[:search])
   end
 
   def show
@@ -24,7 +23,7 @@ class ItemsController < ApplicationController
     @item.save
     redirect_to '/items'
   end
-  
+
   def update
     item = Item.find(params[:id])
     item.update(item_params)
@@ -41,6 +40,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:shop_name, :address, :image)
+    params.require(:item).permit(:shop_name, :address, :image, :search)
   end
 end
