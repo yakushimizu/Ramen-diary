@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'relationships/followings'
   get 'relationships/followers'
+  
   resources :items, only: [:index, :show, :edit, :create, :destroy, :update, :new] do
     resource :favorites, only: [:create, :destroy]
     resources :item_comments, only: [:create, :destroy]
