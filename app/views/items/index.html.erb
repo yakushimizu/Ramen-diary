@@ -1,9 +1,10 @@
 <div class='container'>
   <h2 class="text-secondary">投稿一覧</h2><p class="text-secondary">(全<%= @items.count %>件)</p>
   <%= form_tag(items_path, :method => "get") do %>
-    <%= text_field_tag :search %> 
-    <%= submit_tag "住所検索" ,:address => nil ,class: "button is-info"%> 
-  <% end %> 
+    <%= text_field_tag :search %>
+    <%= submit_tag "住所検索" ,:address => nil ,class: "button is-info"%>
+  <% end %>
+  <%= link_to "検索リセット", items_path %>
   <div class='row m-5'>
     <% @items.each do |item| %>
       <div class="col-md-3">

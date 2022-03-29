@@ -7,14 +7,17 @@ class Item < ApplicationRecord
 
 
   validates :image, presence: true, blob: { content_type: :image }
+  validates :shop_name, presence: true
+  validates :address, presence: true
+
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
 
-  def Item.search(search) #self.はItem.を意味する
+  def Item.search(search) 
     if search
-      where(['address LIKE ?', "%#{search}%"]) #検索とadressの部分一致を表示。
+      where(['address LIKE ?', "%#{search}%"]) #検索とaddressの部分一致を表示。
     else
       all #全て表示させる
     end
