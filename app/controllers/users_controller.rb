@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update]
 
+  def index
+    redirect_to new_user_registration_path
+  end
+
   def show
     @user = User.find(params[:id])
     @items = @user.items

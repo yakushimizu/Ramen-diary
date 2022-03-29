@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+  attributes:
+    name: ニックネーム
+    email: メールアドレス
+    password: パスワード
+    shop_name: 店名
+    address: 住所
+    image: 画像
