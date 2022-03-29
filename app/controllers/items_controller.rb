@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :correct_user, only: [:update, :edit]
 
   def new
     @item = Item.new
@@ -38,6 +39,15 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def correct_user
+    @item = Item.find(params[:id])
+    @user = @item.user
+    redirect_to(items_path)
+    unless
+      @user == current_user
+    end
+  end
 
   def item_params
     params.require(:item).permit(:shop_name, :address, :image, :search)

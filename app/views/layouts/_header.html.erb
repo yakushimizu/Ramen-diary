@@ -4,34 +4,34 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            
+
             <li>
-              <%=link_to user_path(current_user.id), class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              <%= link_to user_path(current_user.id), class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
               マイページ
               <% end %>
             </li>
             <li>
-              <%=link_to new_item_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              <%= link_to new_item_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
               新規投稿
               <% end %>
             </li>
             <li>
-              <%=link_to items_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              <%= link_to items_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
               ラーメン一覧
             <% end %>
             </li>
             <li>
-              <%=link_to destroy_user_session_path, method: :delete, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-muted' do %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-muted' do %>
                 ログアウト
               <% end %>
             </li>
           <% else %>
             <li>
-              <%=link_to items_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
+              <%= link_to items_path, class: "btn btn-light mx-2 rounded-pill" 'nav-link text-secondary' do %>
               ラーメン一覧
               <% end %>
             </li>

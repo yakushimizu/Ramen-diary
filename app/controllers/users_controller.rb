@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  before_action :ensure_correct_user, only: [:update]
+
   def show
     @user = User.find(params[:id])
     @items = @user.items
@@ -25,6 +26,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to(current_user)
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name)
