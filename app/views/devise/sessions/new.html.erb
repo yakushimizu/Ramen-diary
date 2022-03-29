@@ -5,6 +5,7 @@
       <h2>ログイン画面</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= flash[:alert] %>
       <div class="field">
         <%= f.label :email, "メールアドレス" %><br>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"w-50"%>
@@ -14,12 +15,12 @@
         <%= f.label :password,'パスワード' %><br>
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
-      
+
       <div class="actions">
         <br><%= f.submit "ログイン" ,class: "btn btn-primary"%>
       </div>
       <% end %>
-      
+
       <br><p>会員登録がお済みでない方</p>
       <div><%= render "devise/shared/links" %>から新規登録を行なってください。</div>
     </div>

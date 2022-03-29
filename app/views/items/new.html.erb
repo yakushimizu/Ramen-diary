@@ -5,6 +5,15 @@
       <h2>新規投稿</h2>
 
       <%= form_with model: @item, url: '/items', method: :post do |f| %>
+      <% if @item.errors.any? %>
+        <div class="alert alert-warning">
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <div class="field">
         <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
       </div>

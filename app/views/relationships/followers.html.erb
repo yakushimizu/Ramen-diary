@@ -15,7 +15,7 @@
             <tr>
               <td><%= user.name %></td>
               <td><%= render "relationships/btn", user: user %></td>
-              <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+              <td><%= link_to '投稿一覧', user_path(user.id) %></td>
             </tr>
           <% end %>
         </tbody>
