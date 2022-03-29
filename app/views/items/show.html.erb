@@ -28,18 +28,20 @@
           <tr>
             <td>
               <%= render "favorites/btn", item: @item %>
+            </tb>
+            <tb>
               <%= render "relationships/btn", user: @item.user %>
-                <% if @item.user == current_user %>
-                  <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-sm btn-info" %>
-                  <%= link_to "削除", item_path(@item), method: :delete, class: "btn btn-sm btn-danger" %>
-                <% end %>
-
+            </td>
+            <td>
+              <% if @item.user == current_user %>
+                <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-info" %>
+                <%= link_to "削除", item_path(@item), method: :delete, class: "btn btn-danger" %>
+              <% end %>
             </td>
           </tr>
           <tr>
             <td>コメント件数：<%= @item.item_comments.count %></td>
           </tr>
-
         </tbody>
       </table>
     </div>

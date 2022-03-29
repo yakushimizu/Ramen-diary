@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
   
-  root to: "homes#top"
-  # root to: "items#index" Topページ完成しなかった場合
+  #root to: "homes#top" トップページ未完成
+  root to: "items#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
