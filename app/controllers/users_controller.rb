@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:update]
+  before_action :ensure_correct_user, only: [:update, :edit]
 
   def index
     redirect_to new_user_registration_path
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if @user == current_user
-        render "edit"
+        redirect_to(current_user)
     else
       redirect_to user_path(current_user)
     end
@@ -23,10 +23,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice]="You have updated user successfully."
-      redirect_to user_path(current_user)
-    else
-      render :edit
     end
+    redirect_to user_path(current_user)
   end
 
   private
